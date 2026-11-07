@@ -57,4 +57,6 @@ Brand colours live only in `tokens/theme.css`. The orange and grey palette and p
 
 Custom work consists of page assembly, `assets/demo.css` for composition, `assets/demo-data.js` for fictional records, `assets/demo.js` for linked records, browser persistence, validation, workflow transitions and downloads, and `assets/demo-ui.js` for dropdown placement, responsive sorting and overlay focus management. The existing components provide the shell, tables, sorting/filtering/paging, tabs, custom selects, dialogs, chart, scroll areas and toast notifications.
 
+Every page has a top attribution strip linking to Software Crafting Technologies, with `utm_source=adhunik-sales-demo`, `utm_medium=demo`, `utm_campaign=adhunik-sales-demo` and a page-specific `utm_content` such as `index-top`. Its measured height keeps sticky navigation aligned when the text wraps on a phone. The agency credit is not duplicated in the footer.
+
 This is a demonstration, with fictional buyers and commercial records. There is no backend, authentication, real email delivery, shared inventory or carrier integration. Roles are walkthrough views, not access controls. All downloaded documents are illustrative CSV files.

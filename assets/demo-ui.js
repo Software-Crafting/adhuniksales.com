@@ -1,5 +1,11 @@
 /* Layout fixes around the copied controls. Component markup, selection and keyboard behavior stay intact. */
 (() => {
+  const credit = document.querySelector('.ds-demo__credit');
+  if (credit) {
+    const fitCredit = () => document.documentElement.style.setProperty('--ds-demo-credit-height', `${credit.offsetHeight}px`);
+    fitCredit();
+    new ResizeObserver(fitCredit).observe(credit);
+  }
   const popups = [...document.querySelectorAll('.ds-select__popup')];
   const topLayer = typeof HTMLElement.prototype.showPopover === 'function';
   let frame;

@@ -1,5 +1,12 @@
 /* Only page composition. All colours and typography use design-system tokens. */
 html.ds-demo--locked { overflow: hidden; }
+.ds-demo__credit { position: sticky; top: 0; z-index: calc(var(--z-sticky) + 1); display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-1) var(--space-2); padding: var(--space-1) var(--space-4); background: var(--color-inverse); color: var(--color-on-inverse-muted); font-size: var(--text-xs); line-height: var(--leading-normal); text-align: center; }
+.ds-demo__credit > span { min-width: 0; }
+.ds-demo__credit a { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--color-on-inverse); font-weight: var(--weight-semibold); text-decoration: underline; white-space: nowrap; }
+.ds-demo__credit a:hover { color: var(--color-on-inverse); text-decoration-thickness: 2px; }
+.ds-demo__credit a:focus-visible { outline-color: var(--color-on-inverse); }
+.ds-app { --ds-app-height: calc(100dvh - var(--ds-demo-credit-height, 0px)); --ds-sidebar-height: calc(100dvh - var(--ds-demo-credit-height, 0px)); }
+.ds-app__topbar { top: var(--ds-demo-credit-height, 0px); }
 .ds-demo__brand { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-text); text-decoration: none; font-weight: var(--weight-semibold); letter-spacing: -.025em; }
 .ds-demo__logo { width: 26px; height: 36px; object-fit: contain; flex: none; }
 .ds-demo__brand-text { display: block; line-height: var(--leading-tight); }
@@ -103,6 +110,7 @@ html.ds-demo--locked { overflow: hidden; }
 .ds-card .ds-table td:first-child { white-space: nowrap; }
 @media (min-width: 640px) { .ds-demo__grid, .ds-demo__form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1024px) { .ds-demo__grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .ds-sidebar { top: var(--ds-demo-credit-height, 0px); } }
 @media (min-width: 1280px) { .ds-demo__split { grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr); } .ds-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (min-width: 1280px) and (max-width: 1439px) { .ds-demo__records .ds-table th, .ds-demo__records .ds-table td { padding-inline: var(--space-3); } }
 /* On tablets, record cards keep the buyer and row action visible together. */
@@ -126,6 +134,8 @@ html.ds-demo--locked { overflow: hidden; }
   .ds-demo__records .ds-demo__table-company { text-align: end; }
 }
 @media (max-width: 639px) {
+  .ds-demo__credit { padding-inline: var(--space-3); column-gap: var(--space-1); }
+  .ds-demo__credit-separator { display: none; }
   .ds-app__topbar { padding-inline: var(--space-3); gap: var(--space-1); }
   .ds-demo__mobile-brand { display: block; }
   .ds-demo__top-label { display: none; }
@@ -173,6 +183,6 @@ html.ds-demo--locked { overflow: hidden; }
   .ds-hero__actions .ds-btn { flex: 1 1 auto; }
 }
 @media print {
-  .ds-sidebar, .ds-app__topbar, .ds-demo__banner, .ds-page-header__actions, .ds-demo__state-controls, .ds-toaster { display: none !important; }
+  .ds-demo__credit, .ds-sidebar, .ds-app__topbar, .ds-demo__banner, .ds-page-header__actions, .ds-demo__state-controls, .ds-toaster { display: none !important; }
   .ds-app__content { padding: 0; max-width: none; }
 }

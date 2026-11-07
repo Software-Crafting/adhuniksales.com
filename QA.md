@@ -16,6 +16,7 @@ Verified locally on 7 November 2026 using Chromium and the existing Playwright t
 - Mobile dialog scrolling, Escape dismissal, sidebar focus trapping and return, resize-to-desktop cleanup, tab arrow-key navigation and skip-link focus passed.
 - Duplicate step numbers were removed. Record cards keep actions visible on tablets, with a working Sort by control, reset to default order, and synchronized desktop header sorting. Header buttons leave the keyboard tab sequence while the card layout is active.
 - The dashboard uses the existing donut chart to keep family labels readable on small screens. Stat grids stay balanced, currency values remain on one line, and mobile headers retain the company name.
+- The top attribution was checked on all eight pages at 320, 375, 768, 1024, 1440 and 1920 px (48 checks). Each page has one credit, no duplicate footer credit and the correct client/page UTM values. The strip wraps without clipping; sticky headers and desktop sidebars remain aligned after scrolling. Mobile accessibility scans also passed with the strip present.
 - Custom-select keyboard filtering and reset confirmation/cancellation passed.
 - Direct `file://` navigation and creating an enquiry in the same tab passed.
 - Page-specific CSS uses semantic colour tokens. Copied component CSS and JavaScript match the reference files. The design-system repository has no changes.

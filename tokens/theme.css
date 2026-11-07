@@ -41,3 +41,8 @@
   /* Shape: every radius scales from this */
   --brand-radius: 8px;
 }
+
+/* The agency attribution uses the neutral inverse palette. */
+[data-ds-theme="demo-credit"] {
+  --brand-primary: var(--brand-neutral);
+}
