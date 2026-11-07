@@ -39,7 +39,7 @@ Detail pages accept `?id=ENQ-26048` and `?id=SHP-26017`. The lists link to the c
 7. Choose **Update shipment**. Set cartons, gross weight, carrier, booking reference, departure and arrival, then record a milestone note. Status can advance one stage at a time.
 8. Download the sample packing list or invoice preview. Use the linked enquiry to return to the quote.
 
-Also try adding a buyer, adding an enquiry with multiple parts, saving notes, searching, sorting, status filters, paging and selecting rows. CSV exports contain the current page or the selected visible rows. The dashboard provides deliberate loading and error previews with a working retry.
+Also try adding a buyer, adding an enquiry with multiple parts, saving notes, searching, sorting, status filters, paging and selecting rows. On phones and tablets, records become cards and the Sort by control replaces the table header buttons. CSV exports contain the current page or the selected visible rows. The dashboard provides deliberate loading and error previews with a working retry.
 
 Use **About demo → Reset sample data** to restore the starting records. Data edits persist in browser storage; they do not change `assets/demo-data.js`. To change the shipped sample data, edit that file and reset the browser demo.
 
@@ -55,6 +55,6 @@ Runtime component folders, tokens, the Inter font and icon sprite were copied fr
 
 Brand colours live only in `tokens/theme.css`. The orange and grey palette and pink monogram come from [Adhunik Sales' website](https://adhuniksales.com/); action colours are darkened for accessible contrast. The downloaded monogram is `assets/logo.jpg`.
 
-Custom work consists of page assembly, `assets/demo.css` for composition, `assets/demo-data.js` for fictional records, and `assets/demo.js` for linked records, browser persistence, validation, workflow transitions and downloads. The existing components provide the shell, tables, sorting/filtering/paging, tabs, custom selects, dialogs, chart, scroll areas and toast notifications.
+Custom work consists of page assembly, `assets/demo.css` for composition, `assets/demo-data.js` for fictional records, `assets/demo.js` for linked records, browser persistence, validation, workflow transitions and downloads, and `assets/demo-ui.js` for dropdown placement, responsive sorting and overlay focus management. The existing components provide the shell, tables, sorting/filtering/paging, tabs, custom selects, dialogs, chart, scroll areas and toast notifications.
 
 This is a demonstration, with fictional buyers and commercial records. There is no backend, authentication, real email delivery, shared inventory or carrier integration. Roles are walkthrough views, not access controls. All downloaded documents are illustrative CSV files.
