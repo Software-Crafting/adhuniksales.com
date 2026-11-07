@@ -45,9 +45,9 @@ Use **About demo → Reset sample data** to restore the starting records. Data e
 
 ## Publish with GitHub Pages
 
-Push the contents of this directory to your repository. In GitHub **Settings → Pages**, choose **Deploy from a branch**, select your branch and **/(root)**. Keep `.nojekyll` in the repository. All asset and page paths are relative, so the demo supports a repository URL such as `https://software-crafting.github.io/adhunik-sales-demo/`.
+The repository is [Software-Crafting/adhuniksales.com](https://github.com/Software-Crafting/adhuniksales.com). In GitHub **Settings → Pages**, choose **Deploy from a branch**, select `main` and **/(root)**. Keep `.nojekyll` in the repository. All asset and page paths are relative, so the demo supports `https://software-crafting.github.io/adhuniksales.com/`.
 
-No GitHub repository, commit, push or deployment has been created by this build.
+GitHub Pages activation is managed separately in the repository settings.
 
 ## Design system and custom code
 
