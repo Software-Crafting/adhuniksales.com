@@ -1,0 +1,9 @@
+/* Section of features: heading, then cards with an icon, title and text. */
+.ds-features__head { display: flex; flex-direction: column; gap: var(--space-3); max-width: 640px; margin-bottom: var(--space-10); }
+.ds-features__head--center { align-items: center; margin-inline: auto; text-align: center; }
+.ds-features__grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.ds-feature { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); }
+.ds-feature__icon { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: var(--space-2); border-radius: var(--radius-md); background: var(--color-sunken); color: var(--color-text); }
+.ds-feature__title { font-size: var(--text-md); font-weight: var(--weight-semibold); }
+.ds-feature__text { font-size: var(--text-sm); color: var(--color-text-muted); }
+.ds-features--plain .ds-feature { padding: 0; border: 0; background: none; }

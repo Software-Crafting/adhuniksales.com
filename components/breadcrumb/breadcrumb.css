@@ -1,0 +1,15 @@
+/* Trail of links to the current page. On phones, middle items fold into a "more" link list to keep one line. */
+.ds-breadcrumb__list { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); font-size: var(--text-sm); }
+.ds-breadcrumb__item { display: inline-flex; align-items: center; gap: var(--space-1); min-width: 0; color: var(--color-text-muted); }
+.ds-breadcrumb__item + .ds-breadcrumb__item::before {
+  content: ""; width: 14px; height: 14px; flex: none; background: var(--color-text-subtle);
+  clip-path: polygon(35% 15%, 45% 5%, 85% 50%, 45% 95%, 35% 85%, 65% 50%);
+}
+.ds-breadcrumb__link { padding: var(--space-1); border-radius: var(--radius-sm); color: var(--color-text-muted); text-decoration: none; }
+.ds-breadcrumb__link:hover { color: var(--color-text); text-decoration: underline; }
+.ds-breadcrumb__item [aria-current="page"] { padding: var(--space-1); color: var(--color-text); font-weight: var(--weight-medium); }
+.ds-breadcrumb__more { display: none; }
+@media (max-width: 639px) {
+  .ds-breadcrumb--collapse .ds-breadcrumb__item:not(:first-child, :nth-last-child(-n + 2), .ds-breadcrumb__more) { display: none; }
+  .ds-breadcrumb--collapse .ds-breadcrumb__more { display: inline-flex; }
+}

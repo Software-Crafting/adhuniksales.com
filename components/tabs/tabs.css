@@ -1,0 +1,22 @@
+/* WAI-ARIA tabs. The tab list scrolls sideways on narrow screens through scroll-area. */
+.ds-tabs { display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
+.ds-tabs__list { display: flex; gap: var(--space-1); width: max-content; min-width: 100%; border-bottom: 1px solid var(--color-border); }
+.ds-tabs__tab {
+  position: relative; display: inline-flex; align-items: center; gap: var(--space-2); flex: none;
+  min-height: var(--control-md); padding: 0 var(--space-3); border: 0; background: none;
+  font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--color-text-muted); white-space: nowrap;
+}
+.ds-tabs__tab:hover { color: var(--color-text); }
+.ds-tabs__tab::after { content: ""; position: absolute; inset-inline: var(--space-2); bottom: -1px; height: 2px; border-radius: 2px; background: var(--color-primary); transform: scaleX(0); transition: transform var(--duration-spring) var(--ease-spring); }
+.ds-tabs__tab[aria-selected="true"] { color: var(--color-text); }
+.ds-tabs__tab[aria-selected="true"]::after { transform: scaleX(1); }
+.ds-tabs__tab:focus-visible { outline-offset: -2px; border-radius: var(--radius-sm); }
+.ds-tabs__tab:disabled { opacity: .5; cursor: not-allowed; }
+.ds-tabs__count { padding: 0 6px; border-radius: var(--radius-full); background: var(--color-sunken); font-size: var(--text-xs); }
+.ds-tabs__panel:focus-visible { outline-offset: 4px; border-radius: var(--radius-sm); }
+
+/* Pill style: a sunken track with a raised selected tab */
+.ds-tabs--pills .ds-tabs__list { gap: 2px; width: fit-content; min-width: 0; padding: 3px; border: 0; border-radius: var(--radius-md); background: var(--color-sunken); }
+.ds-tabs--pills .ds-tabs__tab { min-height: calc(var(--control-md) - 6px); border-radius: calc(var(--radius-md) - 2px); transition: background var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out); }
+.ds-tabs--pills .ds-tabs__tab::after { display: none; }
+.ds-tabs--pills .ds-tabs__tab[aria-selected="true"] { background: var(--color-surface); box-shadow: var(--shadow-sm); }

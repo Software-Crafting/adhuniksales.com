@@ -1,0 +1,10 @@
+/* Press ripple. ripple.js adds a clipped layer inside the host and grows a wave from the press point.
+   Hosts: every .ds-btn, and any element with data-ds-ripple. The layer sits over the content at low opacity
+   in the host's own colour, so labels stay readable and nothing outside the host is clipped. */
+.ds-ripple { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; pointer-events: none; }
+.ds-ripple__wave {
+  position: absolute; left: var(--ds-ripple-x, 50%); top: var(--ds-ripple-y, 50%);
+  width: var(--ds-ripple-size, 200%); aspect-ratio: 1; translate: -50% -50%; border-radius: 50%;
+  background: currentColor; animation: ds-ripple 600ms var(--ease-out) forwards;
+}
+@keyframes ds-ripple { from { scale: 0; opacity: .18; } 40% { opacity: .14; } to { scale: 1; opacity: 0; } }

@@ -1,0 +1,61 @@
+/* App sidebar: groups of links with icons and badges, collapsible sub lists, and a footer.
+   From 1024px it can collapse to an icon rail; below 1024px it is off-canvas, opened by a menu button. */
+.ds-sidebar {
+  position: fixed; inset: 0 auto 0 0; z-index: var(--z-shell); display: flex; flex-direction: column;
+  --ds-sidebar-rail: 64px;
+  width: min(85vw, var(--sidebar)); overflow: hidden; background: var(--color-surface); border-inline-end: 1px solid var(--color-border);
+  transform: translateX(-100%); visibility: hidden;
+  transition: transform var(--duration-spring) var(--ease-spring-soft), visibility 0s var(--duration-spring), width var(--duration-spring) var(--ease-spring-soft);
+}
+.ds-sidebar > .ds-scroll-area { flex: 1; min-height: 0; }
+.ds-sidebar[data-open] { transform: none; visibility: visible; box-shadow: var(--shadow-lg); transition-delay: 0s; }
+.ds-sidebar__scrim { position: fixed; inset: 0; z-index: calc(var(--z-shell) - 1); background: var(--color-overlay); }
+.ds-sidebar__head { display: flex; align-items: center; gap: var(--space-2); min-height: var(--topbar); padding: 0 var(--space-3) 0 var(--space-4); transition: padding var(--duration-spring) var(--ease-spring-soft); }
+.ds-sidebar__brand { flex: 1 1 0; min-width: 0; overflow: hidden; white-space: nowrap; }
+.ds-sidebar__nav { flex: 1; min-height: 0; padding: var(--space-2) var(--space-3); }
+.ds-sidebar__group-label { padding: var(--space-4) var(--space-2) var(--space-1); font-size: var(--text-xs); font-weight: var(--weight-semibold); color: var(--color-text-muted); white-space: nowrap; }
+.ds-sidebar__group-label:first-child { padding-top: var(--space-1); }
+.ds-sidebar__list { display: flex; flex-direction: column; gap: 2px; }
+.ds-sidebar__link {
+  display: flex; align-items: center; gap: var(--space-3); width: 100%; min-height: var(--control-md); padding: 0 calc((var(--ds-sidebar-rail) - 2 * var(--space-3) - 20px) / 2);
+  border: 0; border-radius: var(--radius-md); background: none; color: var(--color-text-muted);
+  font-size: var(--text-sm); font-weight: var(--weight-medium); text-align: start; text-decoration: none; white-space: nowrap;
+}
+.ds-sidebar__link:hover { background: var(--color-hover); color: var(--color-text); }
+.ds-sidebar__link[aria-current="page"] { background: var(--color-primary-soft); color: var(--color-on-primary-soft); }
+.ds-sidebar__link[aria-current="page"] .ds-icon { color: currentColor; }
+.ds-sidebar__text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.ds-sidebar__badge { margin-inline-start: auto; padding: 0 6px; border-radius: var(--radius-full); background: var(--color-sunken); font-size: var(--text-xs); font-variant-numeric: tabular-nums; }
+.ds-sidebar__sub { list-style: none; }
+.ds-sidebar__sub > summary { list-style: none; cursor: pointer; }
+.ds-sidebar__sub > summary::-webkit-details-marker { display: none; }
+.ds-sidebar__chevron { margin-inline-start: auto; transition: transform var(--duration-base); }
+.ds-sidebar__sub[open] .ds-sidebar__chevron { transform: rotate(90deg); }
+.ds-sidebar__sub .ds-sidebar__list { margin: 2px 0 var(--space-1) calc(var(--space-2) + 9px); padding-inline-start: var(--space-3); border-inline-start: 1px solid var(--color-border); }
+.ds-sidebar__sub .ds-sidebar__link { min-height: var(--control-sm); }
+.ds-sidebar__foot { padding: var(--space-3) calc((var(--ds-sidebar-rail) - 32px) / 2); border-top: 1px solid var(--color-border); }
+.ds-sidebar__user { display: flex; align-items: center; gap: var(--space-3); min-width: 0; font-size: var(--text-sm); }
+.ds-sidebar__avatar { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--color-primary-soft); color: var(--color-on-primary-soft); font-size: var(--text-xs); font-weight: var(--weight-semibold); }
+.ds-sidebar__collapse { display: none; flex: none; }
+.ds-sidebar__collapse .ds-icon { transition: transform var(--duration-spring) var(--ease-spring); }
+
+@media (min-width: 1024px) {
+  .ds-sidebar { position: sticky; top: 0; height: var(--ds-sidebar-height, 100dvh); inset: auto; z-index: auto; flex: none; width: var(--sidebar); transform: none; visibility: visible; }
+  .ds-sidebar[data-open] { box-shadow: none; }
+  .ds-sidebar__scrim, .ds-sidebar__close { display: none; }
+  .ds-sidebar__collapse { display: inline-flex; }
+  /* Icon rail. Only the width moves (soft spring, no overshoot); icons keep their place because their padding never
+     changes, and labels stay in the layout and fade, so they keep their accessible names. */
+  .ds-sidebar[data-collapsed] { width: var(--ds-sidebar-rail); }
+  .ds-sidebar :is(.ds-sidebar__text, .ds-sidebar__badge, .ds-sidebar__chevron, .ds-sidebar__group-label, .ds-sidebar__brand, .ds-sidebar__user-text) {
+    transition: opacity var(--duration-base) var(--ease-out) var(--duration-fast);
+  }
+  .ds-sidebar[data-collapsed] :is(.ds-sidebar__text, .ds-sidebar__badge, .ds-sidebar__chevron, .ds-sidebar__group-label, .ds-sidebar__brand, .ds-sidebar__user-text) {
+    opacity: 0; transition: opacity var(--duration-fast) var(--ease-in);
+  }
+  .ds-sidebar__brand { transition: flex-grow var(--duration-spring) var(--ease-spring-soft), opacity var(--duration-base) var(--ease-out) var(--duration-fast); }
+  .ds-sidebar[data-collapsed] .ds-sidebar__brand { flex-grow: 0; transition: flex-grow var(--duration-spring) var(--ease-spring-soft), opacity var(--duration-fast) var(--ease-in); }
+  .ds-sidebar[data-collapsed] .ds-sidebar__head { padding-inline: calc((var(--ds-sidebar-rail) - var(--control-sm)) / 2); gap: 0; }
+  .ds-sidebar[data-collapsed] .ds-sidebar__sub .ds-sidebar__list { display: none; }
+  .ds-sidebar[data-collapsed] .ds-sidebar__collapse .ds-icon { transform: scaleX(-1); }
+}

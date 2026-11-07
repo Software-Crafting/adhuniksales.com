@@ -1,0 +1,43 @@
+/* Brand inputs. This is the only file to edit when rebranding a project.
+   Everything else in the system derives from these values in tokens.css.
+   After editing, run: npm run check */
+:root {
+  /* Primary action colour and the text that sits on it */
+  --brand-primary: #a54500;
+  --brand-on-primary: #ffffff;
+
+  /* Accent: links, focus rings, highlights */
+  --brand-accent: #b5164b;
+  --brand-on-accent: #ffffff;
+
+  /* Neutrals, a warm taupe scale. Text, secondary text, lines and the muted surface; the rest derives from them. */
+  --brand-neutral: #141414;
+  --brand-neutral-muted: #606060;
+  --brand-border: #e3e3e3;
+  --brand-surface-muted: #f2f2f2;
+
+  /* Status */
+  --brand-success: #166534;
+  --brand-warning: #92400e;
+  --brand-danger: #b91c1c;
+  --brand-info: #0369a1;
+
+  /* Rating stars, needs 3:1 against white */
+  --brand-rating: #d97706;
+
+  /* Chart series, each needs 3:1 against white */
+  --brand-chart-1: #a54500;
+  --brand-chart-2: #b5164b;
+  --brand-chart-3: #0f766e;
+  --brand-chart-4: #a21caf;
+  --brand-chart-5: #854d0e;
+  --brand-chart-6: #475569;
+
+  /* Type: self-hosted Inter ships in base/fonts. Swap the file and @font-face in base.css to change it. */
+  --brand-font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --brand-font-display: var(--brand-font-sans);
+  --brand-font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+
+  /* Shape: every radius scales from this */
+  --brand-radius: 8px;
+}

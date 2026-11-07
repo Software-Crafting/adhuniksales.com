@@ -1,0 +1,7 @@
+/* Short visual label on hover or focus. One shared bubble per page, made by tooltip.js. */
+.ds-tooltip {
+  max-width: min(280px, calc(100vw - var(--space-4))); min-height: 32px; padding: 6px var(--space-3);
+  border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); color: var(--color-text);
+  box-shadow: var(--shadow-md); font-size: var(--text-sm); line-height: var(--leading-snug); pointer-events: none; --ds-pop-scale: .9;
+}
+.ds-tooltip kbd { margin-inline-start: var(--space-2); color: var(--color-text-muted); font-family: inherit; }

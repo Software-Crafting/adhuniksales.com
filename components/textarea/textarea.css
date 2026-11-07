@@ -1,0 +1,14 @@
+/* Pair with .ds-scroll from scroll-area: the box stops growing at --ds-textarea-max (320px) and scrolls. */
+.ds-textarea {
+  display: block; width: 100%; min-height: calc(var(--control-md) * 2); padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-input); border-radius: var(--radius-md); background: var(--color-surface);
+  line-height: var(--leading-normal); resize: vertical; transition: border-color var(--duration-fast);
+  --ds-scroll-max: var(--ds-textarea-max, 320px);
+}
+.ds-textarea:hover { border-color: var(--color-text-muted); }
+.ds-textarea::placeholder { color: var(--color-text-subtle); opacity: 1; }
+.ds-textarea[aria-invalid="true"] { border-color: var(--color-danger); }
+.ds-textarea:disabled { border-color: var(--color-border-strong); background: var(--color-sunken); color: var(--color-text-muted); cursor: not-allowed; }
+.ds-textarea[readonly] { border-style: dashed; border-color: var(--color-border-strong); resize: none; }
+.ds-textarea[data-ds-textarea-autogrow] { resize: none; }
+.ds-textarea__counter { font-size: var(--text-xs); color: var(--color-text-muted); text-align: end; font-variant-numeric: tabular-nums; }

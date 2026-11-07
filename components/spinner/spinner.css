@@ -1,0 +1,13 @@
+/* Busy indicator. Pair with visible text, or put the text in .ds-sr-only inside role="status". */
+.ds-spinner {
+  display: inline-block; flex: none; width: var(--ds-spinner-size, 20px); aspect-ratio: 1;
+  border: 2px solid color-mix(in srgb, currentColor 20%, transparent); border-top-color: currentColor; border-radius: 50%;
+  animation: ds-spin .7s linear infinite;
+}
+.ds-spinner--sm { --ds-spinner-size: 14px; }
+.ds-spinner--lg { --ds-spinner-size: 32px; border-width: 3px; }
+@keyframes ds-spin { to { transform: rotate(360deg); } }
+/* Reduced motion: a slow pulse instead of spinning */
+@media (prefers-reduced-motion: reduce) { .ds-spinner { animation: none; border-top-color: color-mix(in srgb, currentColor 20%, transparent); background: color-mix(in srgb, currentColor 30%, transparent); } }
+.ds-loading { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--color-text-muted); }
+.ds-loading--block { display: flex; justify-content: center; padding: var(--space-10) var(--space-4); }

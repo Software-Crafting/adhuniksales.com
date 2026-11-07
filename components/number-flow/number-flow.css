@@ -1,0 +1,13 @@
+/* Rolling number. Digits that change roll up when the value rises and down when it falls, on a spring, with a small
+   left to right stagger. number-flow.js builds the rolling cells and returns the element to plain text afterwards. */
+.ds-number-flow { display: inline-block; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ds-number-flow__cell { display: inline-block; height: 1lh; overflow: hidden; vertical-align: bottom; }
+.ds-number-flow__roll { display: flex; flex-direction: column; animation: var(--ds-number-flow-dir) var(--duration-spring) var(--ease-spring) calc(var(--i, 0) * 30ms) both; }
+.ds-number-flow__roll > span { height: 1lh; }
+/* Up: old on top, new below, the strip moves up. Down: new on top, old below, the strip moves down. */
+.ds-number-flow__cell[data-dir="up"] { --ds-number-flow-dir: ds-number-flow-up; }
+.ds-number-flow__cell[data-dir="down"] { --ds-number-flow-dir: ds-number-flow-down; }
+.ds-number-flow__cell[data-dir="in"] { --ds-number-flow-dir: ds-number-flow-in; }
+@keyframes ds-number-flow-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+@keyframes ds-number-flow-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+@keyframes ds-number-flow-in { from { opacity: 0; transform: translateY(40%); } }

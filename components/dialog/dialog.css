@@ -1,0 +1,41 @@
+/* Native <dialog>: focus trap, Esc and inert background come from the browser.
+   Centered card from 640px; bottom sheet on phones. Side panels are in components/sheet. */
+.ds-dialog {
+  width: 100%; max-width: none; max-height: 92dvh; margin: auto 0 0; padding: 0;
+  border: 0; border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.ds-dialog > .ds-scroll-area { flex: 1; min-height: 0; }
+.ds-dialog[open] { display: flex; flex-direction: column; }
+/* Enter springs in from --ds-dialog-from, exit is a short soft spring. Sheets and drawers only change --ds-dialog-from. */
+.ds-dialog {
+  /* Edge-anchored panels use the soft spring so an overshoot never shows a gap at the screen edge */
+  --ds-dialog-from: translateY(100%); --ds-dialog-ease: var(--ease-spring-soft);
+  transition: opacity var(--duration-base) var(--ease-out), transform var(--duration-spring) var(--ds-dialog-ease),
+    overlay var(--duration-base) allow-discrete, display var(--duration-base) allow-discrete;
+}
+.ds-dialog:not([open]) { opacity: 0; transform: var(--ds-dialog-from); transition-duration: var(--duration-base); transition-timing-function: var(--ease-spring-soft); }
+@starting-style { .ds-dialog[open] { opacity: 0; transform: var(--ds-dialog-from); } }
+.ds-dialog::backdrop { background: transparent; transition: background-color var(--duration-base) var(--ease-out), overlay var(--duration-base) allow-discrete, display var(--duration-base) allow-discrete; }
+.ds-dialog[open]::backdrop { background: var(--color-overlay); }
+@starting-style { .ds-dialog[open]::backdrop { background: transparent; } }
+.ds-dialog__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) var(--space-5) var(--space-3); }
+.ds-dialog__title { font-size: var(--text-lg); line-height: var(--leading-snug); }
+.ds-dialog__desc { margin-top: var(--space-1); font-size: var(--text-sm); color: var(--color-text-muted); }
+.ds-dialog__body { flex: 1; min-height: 0; padding: var(--space-2) var(--space-5) var(--space-5); font-size: var(--text-sm); }
+.ds-dialog__foot {
+  display: flex; flex-direction: column-reverse; gap: var(--space-2);
+  padding: var(--space-3) var(--space-5) calc(var(--space-4) + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--color-border);
+}
+.ds-dialog__foot .ds-btn { width: 100%; }
+
+@media (min-width: 640px) {
+  .ds-dialog { width: min(100% - var(--space-8), 480px); max-height: 85dvh; margin: auto; border-radius: var(--radius-xl); }
+  .ds-dialog--lg { width: min(100% - var(--space-8), 720px); }
+  .ds-dialog__foot { flex-direction: row; justify-content: flex-end; padding-bottom: var(--space-4); }
+  .ds-dialog__foot .ds-btn { width: auto; }
+  .ds-dialog { --ds-dialog-from: translateY(12px) scale(.96); --ds-dialog-ease: var(--ease-spring); }
+}
+

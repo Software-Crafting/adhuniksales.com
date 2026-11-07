@@ -1,0 +1,8 @@
+/* Table with a toolbar (filter, column picker) and a pager. Composes table, input, dropdown-menu and select. */
+.ds-data-table { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
+.ds-data-table__toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.ds-data-table__filter { flex: 1 1 220px; max-width: 360px; }
+.ds-data-table__pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); font-size: var(--text-sm); color: var(--color-text-muted); }
+.ds-data-table__pager-controls { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.ds-data-table__size { display: flex; align-items: center; gap: var(--space-2); }
+.ds-data-table__size .ds-select { width: 76px; }

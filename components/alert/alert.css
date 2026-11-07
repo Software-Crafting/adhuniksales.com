@@ -1,0 +1,49 @@
+/* Inline message. Tone comes from a modifier; the icon and the words carry meaning, colour only supports them.
+   Grid: icon, body and an optional trailing control share the first row, so the icon (a soft tinted circle)
+   and the dismiss button centre on the title and description. Actions sit after the body on their own row. */
+.ds-alert {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--ds-alert-border); border-radius: var(--radius-md);
+  background: var(--ds-alert-bg); color: var(--color-text);
+  font-size: var(--text-sm);
+}
+.ds-alert__icon {
+  grid-column: 1; box-sizing: border-box; width: var(--space-10); height: var(--space-10); padding: var(--space-2);
+  border-radius: 50%; background: color-mix(in srgb, var(--ds-alert-tone) 12%, transparent); color: var(--ds-alert-tone);
+}
+.ds-alert__body { grid-column: 2; }
+.ds-alert > :not(.ds-alert__icon, .ds-alert__body, .ds-alert__actions) { grid-area: 1 / 3; }
+.ds-alert__title { font-weight: var(--weight-semibold); }
+.ds-alert__actions { grid-column: 2; display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }
+.ds-alert__action {
+  min-height: var(--control-sm); padding: 0 var(--space-3);
+  border: 1px solid var(--color-input); border-radius: var(--radius-sm);
+  background: var(--color-surface); font-size: var(--text-sm); font-weight: var(--weight-medium);
+}
+.ds-alert__action:hover { background: var(--color-hover); }
+.ds-alert__dismiss {
+  display: inline-grid; place-items: center;
+  width: var(--control-sm); height: var(--control-sm); margin-inline-end: calc(var(--space-2) * -1);
+  border: 0; border-radius: var(--radius-sm); background: transparent;
+}
+.ds-alert__dismiss:hover { background: var(--color-hover); }
+
+.ds-alert--info { --ds-alert-tone: var(--color-info); --ds-alert-bg: var(--color-info-bg); --ds-alert-border: var(--color-info-border); }
+.ds-alert--success { --ds-alert-tone: var(--color-success); --ds-alert-bg: var(--color-success-bg); --ds-alert-border: var(--color-success-border); }
+.ds-alert--warning { --ds-alert-tone: var(--color-warning); --ds-alert-bg: var(--color-warning-bg); --ds-alert-border: var(--color-warning-border); }
+.ds-alert--danger { --ds-alert-tone: var(--color-danger); --ds-alert-bg: var(--color-danger-bg); --ds-alert-border: var(--color-danger-border); }
+
+/* Banner: edge to edge at the top of a page or section */
+.ds-alert--banner { width: 100%; border-width: 0 0 1px; border-radius: 0; }
+
+/* From 640px the banner reads as one line: title and description side by side, actions after them */
+@media (min-width: 640px) {
+  .ds-alert--banner .ds-alert__body { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--space-4); }
+  .ds-alert--banner .ds-alert__actions { grid-area: 1 / 3; margin-top: 0; }
+  .ds-alert--banner > :not(.ds-alert__icon, .ds-alert__body, .ds-alert__actions) { grid-column: 4; }
+}
+
+/* Dismissed alerts fade and lift away before they are removed */
+.ds-alert[data-leaving] { animation: ds-alert-out var(--duration-base) var(--ease-in) forwards; pointer-events: none; }
+@keyframes ds-alert-out { to { opacity: 0; transform: translateY(-4px) scale(.98); } }

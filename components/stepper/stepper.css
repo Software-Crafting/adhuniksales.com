@@ -1,0 +1,42 @@
+/* Progress through a fixed set of steps. Mark the current step with aria-current="step", finished steps with
+   data-state="done" and a failed step with data-state="error" (swap its marker icon for alert-circle). */
+.ds-stepper { display: flex; gap: var(--space-2); counter-reset: ds-step; }
+.ds-stepper__step { display: flex; flex: 1; align-items: center; gap: var(--space-2); min-width: 0; counter-increment: ds-step; font-size: var(--text-sm); color: var(--color-text-muted); }
+.ds-stepper__step:not(:last-child)::after { content: ""; flex: 1; min-width: var(--space-4); height: 2px; border-radius: 1px; background: var(--color-border-strong); }
+.ds-stepper__marker {
+  display: grid; place-items: center; flex: none; width: 28px; height: 28px; border: 1.5px solid var(--color-border-strong); border-radius: 50%;
+  background: var(--color-surface); font-size: var(--text-xs); font-weight: var(--weight-semibold); font-variant-numeric: tabular-nums;
+}
+.ds-stepper__marker::before { content: counter(ds-step); }
+.ds-stepper__marker .ds-icon { display: none; }
+.ds-stepper__label { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.ds-stepper__step[data-state="done"] { color: var(--color-text); }
+.ds-stepper__step[data-state="done"] .ds-stepper__marker { border-color: var(--color-primary); background: var(--color-primary); color: var(--color-on-primary); }
+.ds-stepper__step:is([data-state="done"], [data-state="error"]) .ds-stepper__marker::before { content: none; }
+.ds-stepper__step:is([data-state="done"], [data-state="error"]) .ds-stepper__marker .ds-icon { display: block; }
+.ds-stepper__step[data-state="done"]:not(:last-child)::after { background: var(--color-primary); }
+.ds-stepper__step[aria-current="step"] { color: var(--color-text); font-weight: var(--weight-medium); }
+.ds-stepper__step[aria-current="step"] .ds-stepper__marker { border-color: var(--color-primary); box-shadow: 0 0 0 3px var(--color-primary-soft); }
+/* Error: the marker shows the alert icon, the hidden prefix says so and the description says what to fix */
+.ds-stepper__step[data-state="error"] { color: var(--color-text); }
+.ds-stepper__step[data-state="error"] .ds-stepper__marker { border-color: var(--color-danger); background: var(--color-danger-bg); color: var(--color-danger); box-shadow: none; }
+.ds-stepper__step[data-state="error"] .ds-stepper__desc { color: var(--color-danger); }
+/* Phones: only the current label shows */
+@media (max-width: 639px) {
+  .ds-stepper:not(.ds-stepper--vertical) .ds-stepper__step:not([aria-current="step"]) .ds-stepper__label { display: none; }
+  .ds-stepper:not(.ds-stepper--vertical) .ds-stepper__step[aria-current="step"] { flex: 2; }
+}
+
+.ds-stepper--vertical { flex-direction: column; gap: 0; }
+.ds-stepper--vertical .ds-stepper__step { display: grid; grid-template-columns: 28px minmax(0, 1fr); column-gap: var(--space-3); align-items: start; }
+.ds-stepper--vertical .ds-stepper__step:not(:last-child)::after { grid-column: 1; justify-self: center; width: 2px; height: auto; min-width: 0; min-height: var(--space-6); margin-block: var(--space-1); }
+.ds-stepper--vertical .ds-stepper__body { grid-row: 1 / span 2; grid-column: 2; display: flex; flex-direction: column; gap: 2px; padding: 3px 0 var(--space-5); }
+.ds-stepper--vertical .ds-stepper__step:last-child .ds-stepper__body { padding-bottom: 0; }
+.ds-stepper--vertical .ds-stepper__label { display: block; white-space: normal; }
+.ds-stepper__desc { font-size: var(--text-xs); font-weight: var(--weight-regular); color: var(--color-text-muted); }
+
+/* Dots: compact progress for onboarding carousels */
+.ds-step-dots { display: flex; gap: var(--space-2); }
+.ds-step-dots__dot { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--color-border-strong); transition: width var(--duration-base); }
+.ds-step-dots__dot[data-state="done"] { background: var(--color-primary); }
+.ds-step-dots__dot[aria-current="step"] { width: 24px; background: var(--color-primary); }

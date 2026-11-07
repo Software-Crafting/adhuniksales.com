@@ -1,0 +1,35 @@
+/* .ds-input is the visible box; the real input sits inside it as .ds-input__control.
+   Font size is left to base.css so touch screens get 16px and iOS does not zoom on focus. */
+.ds-input {
+  display: flex; align-items: center; gap: var(--space-2); width: 100%;
+  min-height: var(--control-md); padding-inline: var(--space-3);
+  border: 1px solid var(--color-input); border-radius: var(--radius-md); background: var(--color-surface);
+  transition: border-color var(--duration-fast);
+}
+.ds-input:hover { border-color: var(--color-text-muted); }
+.ds-input:has(.ds-input__control:focus-visible) { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.ds-input:has(.ds-input__control[aria-invalid="true"]) { border-color: var(--color-danger); }
+.ds-input:has(.ds-input__control:disabled) { border-color: var(--color-border-strong); background: var(--color-sunken); }
+/* Read only: full-colour text in a dashed box, still focusable and selectable. Disabled is the sunken one. */
+.ds-input:has(.ds-input__control[readonly]) { border-style: dashed; border-color: var(--color-border-strong); }
+
+.ds-input__control { flex: 1; align-self: stretch; width: 100%; min-width: 0; padding: 0; border: 0; outline: 0; background: none; }
+.ds-input__control::placeholder { color: var(--color-text-subtle); opacity: 1; }
+.ds-input__control:disabled { color: var(--color-text-muted); cursor: not-allowed; }
+.ds-input__control::-webkit-search-cancel-button { appearance: none; }
+
+.ds-input__icon { color: var(--color-text-muted); }
+.ds-input__affix { flex: none; font-size: var(--text-sm); color: var(--color-text-muted); white-space: nowrap; }
+.ds-input__action {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: var(--control-sm); height: var(--control-sm); margin-inline-end: calc(var(--space-2) * -1); padding: 0;
+  border: 0; border-radius: var(--radius-sm); background: none; color: var(--color-text-muted);
+}
+.ds-input__action:hover:not(:disabled) { background: var(--color-hover); color: var(--color-text); }
+.ds-input__action:disabled { cursor: not-allowed; }
+/* Search clear needs placeholder on the input: it hides itself while the field is empty. */
+.ds-input__control:placeholder-shown ~ [data-ds-input-clear] { display: none; }
+
+.ds-input--sm { min-height: var(--control-sm); padding-inline: var(--space-2); font-size: var(--text-sm); }
+.ds-input--sm .ds-input__action { width: calc(var(--control-sm) - 2px); height: calc(var(--control-sm) - 2px); margin-inline-end: calc(var(--space-1) * -1); }
+.ds-input--lg { min-height: var(--control-lg); padding-inline: var(--space-4); }
